@@ -1,6 +1,8 @@
-/*
-
+*
+!*/
+!*.c 
+!*.pdf
 !.gitignore
-!README.md
-!problemset/
-!c/
+!*.md
+tempCodeRunnerFile.*
+*tes*
