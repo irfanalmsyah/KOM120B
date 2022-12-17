@@ -1,10 +1,10 @@
-//wrong-answer
 #include <stdio.h>
 
 int main(){
     int kasus;
     scanf("%d", &kasus);
     for (int i = 0; i < kasus; i++) {
+        int found = 0;
         int jmlbungkus = 0;
         scanf("%d", &jmlbungkus);
         int bungkus[jmlbungkus];
@@ -13,36 +13,29 @@ int main(){
             scanf("%d", &bungkus[j]);
             totalpermen += bungkus[j];
         }
-        printf("%d", totalpermen);
         if (totalpermen % 2 != 0) {
             printf("0\n");
-            continue;
-        }
-        int found = 0;
-        for (int j = 0; j < jmlbungkus; j++) {
-            float bagi = bungkus[j];
-            if (bagi == (float)(totalpermen)/2) {
-                    found = 1;
-                    printf("1\n");
-                    break;
-            }
-            for (int k = j + 1; k < jmlbungkus; k++) {
-                bagi += bungkus[k];
-                if (bagi == (float)(totalpermen)/2) {
-                    found = 1;
-                    printf("1\n");
-                    break;
+        } else {
+            totalpermen /= 2;
+            for (int j = 0; j < jmlbungkus; j++) {
+                int bagi = 0;
+                for (int k = j; k < jmlbungkus; k++) {
+                    bagi += bungkus[k];
+                    if (bagi == totalpermen) {
+                        printf("1\n");
+                        found = 1;
+                        break;
+                    } else if (bagi > totalpermen) {
+                        bagi -= bungkus[k];
+                    }
                 }
-                if (bagi > (float)(totalpermen)/2) {
+                if (found == 1) {
                     break;
                 }
             }
-            if (found == 1) {
-                break;
+            if (found == 0) {
+                printf("0\n");
             }
-        }
-        if (found == 0) {
-            printf("0\n");
         }
     }
 }
